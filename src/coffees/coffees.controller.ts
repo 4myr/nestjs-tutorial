@@ -12,6 +12,7 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
+import { resolve6 } from 'node:dns';
 import { Public } from 'src/common/decorators/public.decorator';
 import { CoffeesService } from './coffees.service';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
@@ -25,7 +26,8 @@ export class CoffeesController {
 
   @Public()
   @Get()
-  findAll(@Query() paginationQuery) {
+  async findAll(@Query() paginationQuery) {
+    await new Promise(resolve => setTimeout(resolve, 5000));
     const { limit, offset } = paginationQuery;
     // Using express (@Res() response)
     // response.status(200).send('This is all of coffees');
