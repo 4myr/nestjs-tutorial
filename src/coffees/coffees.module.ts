@@ -30,7 +30,7 @@ class ProductionConfigService {}
         const coffeeBrands = await Promise.resolve(['Benmano', 'Nescafe']);
         return coffeeBrands;
       },
-      inject: [Connection]
+      inject: [Connection],
     },
     // Using constants with useValue
     // CoffeeBrandsFactory,
@@ -43,7 +43,6 @@ class ProductionConfigService {}
     //     brandsFactory.create(),
     //   inject: [CoffeeBrandsFactory],
     // },
-    
     {
       provide: ConfigService,
       useClass:

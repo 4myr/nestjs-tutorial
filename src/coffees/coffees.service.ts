@@ -1,14 +1,19 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { Inject, NotFoundException } from '@nestjs/common';
+import { Inject, NotFoundException, Scope } from '@nestjs/common';
 import { Injectable } from '@nestjs/common';
 import { COFFEE_BRANDS } from './coffees.constants';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 import { Coffee } from './entities/coffee.entity';
 
+// @Injectable({ scope: Scope.REQUEST }) // Instantiate per request
+// @Injectable({ scope: Scope.TRANSIENT }) // Instantiate everywhere needed
+// @Injectable({ scope: Scope.DEFAULT }) // Instantiate once
+
 @Injectable()
 export class CoffeesService {
   constructor(@Inject(COFFEE_BRANDS) coffeeBrands: string[]) {
     console.log(coffeeBrands);
+    console.log('CoffeesService instantiated');
   }
   private coffees: Coffee[] = [
     {
