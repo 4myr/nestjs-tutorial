@@ -1,9 +1,11 @@
 import { Injectable, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 import { COFFEE_BRANDS } from './coffees.constants';
 import { CoffeesController } from './coffees.controller';
 import { CoffeesService } from './coffees.service';
+import { Coffee } from './entities/coffee.entity';
 
 // useClass custom provider
 // class ConfigService {}
@@ -20,7 +22,7 @@ import { CoffeesService } from './coffees.service';
 // Custom provider
 // class MockCoffeesService {}
 @Module({
-  imports: [ConfigModule],
+  imports: [ConfigModule, TypeOrmModule.forFeature([Coffee])],
   controllers: [CoffeesController],
   // providers: [{ provide: CoffeesService, useValue: new MockCoffeesService() }], // Custom Provider
   providers: [
