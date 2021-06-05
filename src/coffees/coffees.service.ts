@@ -2,7 +2,6 @@
 import { Inject, NotFoundException, Scope } from '@nestjs/common';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { COFFEE_BRANDS } from './coffees.constants';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 import { Coffee } from './entities/coffee.entity';
 
