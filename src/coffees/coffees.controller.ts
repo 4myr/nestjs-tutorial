@@ -20,7 +20,7 @@ import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 @UsePipes(ValidationPipe) // @UsePipes(new ValidationPipe())
 @Controller('coffees')
 export class CoffeesController {
-  constructor(private readonly coffeesService: CoffeesService) {}
+  constructor(private readonly coffeesService: CoffeesService) {} 
   @Get()
   findAll(@Query() paginationQuery) {
     const { limit, offset } = paginationQuery;

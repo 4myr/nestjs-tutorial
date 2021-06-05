@@ -27,7 +27,7 @@ import { APP_PIPE } from '@nestjs/core';
       database: process.env.DATABASE_NAME,
       autoLoadEntities: true,
       synchronize: true,
-    }), 
+    }),
     CoffeeRatingModule,
     DatabaseModule,
   ],
