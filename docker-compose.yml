@@ -7,4 +7,4 @@
         ports:
             - "5432:5432"
         environment:
-            POSTGRES_PASSWORD: amyr
+            POSTGRES_PASSWORD: "amiR"

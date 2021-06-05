@@ -9,12 +9,15 @@ import {
   Patch,
   Post,
   Query,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { CoffeesService } from './coffees.service';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 // import { response } from 'express';
 
+@UsePipes(ValidationPipe) // @UsePipes(new ValidationPipe())
 @Controller('coffees')
 export class CoffeesController {
   constructor(private readonly coffeesService: CoffeesService) {}
@@ -40,6 +43,7 @@ export class CoffeesController {
   }
 
   @Patch(':id')
+  // @Body(ValidationPipe)
   update(@Param('id') id: number, @Body() updateCoffeeDto: UpdateCoffeeDto) {
     this.coffeesService.update(id, updateCoffeeDto);
     return `Update coffee id ${id} with\n${updateCoffeeDto}`;

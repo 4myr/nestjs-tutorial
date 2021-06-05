@@ -1,13 +1,14 @@
 import { Injectable, Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Connection } from 'typeorm';
 import { COFFEE_BRANDS } from './coffees.constants';
 import { CoffeesController } from './coffees.controller';
 import { CoffeesService } from './coffees.service';
 
 // useClass custom provider
-class ConfigService {}
-class DevelopmentConfigService {}
-class ProductionConfigService {}
+// class ConfigService {}
+// class DevelopmentConfigService {}
+// class ProductionConfigService {}
 
 //     // Using constants with useFactory
 // @Injectable()
@@ -19,6 +20,7 @@ class ProductionConfigService {}
 // Custom provider
 // class MockCoffeesService {}
 @Module({
+  imports: [ConfigModule],
   controllers: [CoffeesController],
   // providers: [{ provide: CoffeesService, useValue: new MockCoffeesService() }], // Custom Provider
   providers: [
@@ -43,13 +45,15 @@ class ProductionConfigService {}
     //     brandsFactory.create(),
     //   inject: [CoffeeBrandsFactory],
     // },
-    {
-      provide: ConfigService,
-      useClass:
-        process.env.NODE_ENV === 'development'
-          ? DevelopmentConfigService
-          : ProductionConfigService,
-    },
+
+    // useClass provider
+    // {
+    //   provide: ConfigService,
+    //   useClass:
+    //     process.env.NODE_ENV === 'development'
+    //       ? DevelopmentConfigService
+    //       : ProductionConfigService,
+    // },
   ],
   exports: [CoffeesService],
 })

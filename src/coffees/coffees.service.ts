@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { Inject, NotFoundException, Scope } from '@nestjs/common';
 import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { COFFEE_BRANDS } from './coffees.constants';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 import { Coffee } from './entities/coffee.entity';
@@ -11,9 +12,14 @@ import { Coffee } from './entities/coffee.entity';
 
 @Injectable()
 export class CoffeesService {
-  constructor(@Inject(COFFEE_BRANDS) coffeeBrands: string[]) {
-    console.log(coffeeBrands);
+  constructor(
+    // @Inject(COFFEE_BRANDS) coffeeBrands: string[],
+    private readonly configService: ConfigService,
+  ) {
+    // console.log(coffeeBrands);
     console.log('CoffeesService instantiated');
+    const databaseHost = this.configService.get<string>('DATABASE_HOST');
+    console.log(databaseHost);
   }
   private coffees: Coffee[] = [
     {
