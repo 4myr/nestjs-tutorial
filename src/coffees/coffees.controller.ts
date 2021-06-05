@@ -6,17 +6,17 @@ import {
   HttpCode,
   HttpStatus,
   Param,
+  ParseIntPipe,
   Patch,
   Post,
   Query,
   UsePipes,
   ValidationPipe,
-} from '@nestjs/common';
-import { resolve6 } from 'node:dns';
 import { Public } from 'src/common/decorators/public.decorator';
 import { CoffeesService } from './coffees.service';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
+import { Public } from 'src/common/decorators/public.decorator';
 // import { response } from 'express';
 
 @UsePipes(ValidationPipe) // @UsePipes(new ValidationPipe())
@@ -36,7 +36,8 @@ export class CoffeesController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: number) {
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    console.log(id);
     return this.coffeesService.findOne(id);
   }
 
