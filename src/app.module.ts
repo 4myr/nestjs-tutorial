@@ -36,10 +36,10 @@ import { CommonModule } from './common/common.module';
   controllers: [AppController],
   providers: [
     AppService,
-    {
-      provide: APP_PIPE,
-      useClass: ValidationPipe,
-    },
+    // {
+    //   provide: APP_PIPE,
+    //   useClass: ValidationPipe,
+    // },
   ],
 })
 export class AppModule {}

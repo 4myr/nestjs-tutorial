@@ -6,6 +6,7 @@ import { COFFEE_BRANDS } from './coffees.constants';
 import { CoffeesController } from './coffees.controller';
 import { CoffeesService } from './coffees.service';
 import { Coffee } from './entities/coffee.entity';
+import { Flavor } from './entities/flavor.entity';
 
 // useClass custom provider
 // class ConfigService {}
@@ -22,7 +23,7 @@ import { Coffee } from './entities/coffee.entity';
 // Custom provider
 // class MockCoffeesService {}
 @Module({
-  imports: [ConfigModule, TypeOrmModule.forFeature([Coffee])],
+  imports: [ConfigModule, TypeOrmModule.forFeature([Coffee, Flavor])],
   controllers: [CoffeesController],
   // providers: [{ provide: CoffeesService, useValue: new MockCoffeesService() }], // Custom Provider
   providers: [

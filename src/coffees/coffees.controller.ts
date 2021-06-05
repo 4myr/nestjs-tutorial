@@ -18,24 +18,26 @@ import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 import { Public } from 'src/common/decorators/public.decorator';
 import { Protocol } from 'src/common/decorators/protocol.decorator';
+import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto';
 // import { response } from 'express';
 
-@UsePipes(ValidationPipe) // @UsePipes(new ValidationPipe())
+// @UsePipes(ValidationPipe) // @UsePipes(new ValidationPipe())
 @Controller('coffees')
 export class CoffeesController {
   constructor(private readonly coffeesService: CoffeesService) {} 
 
   @Public()
   @Get()
-  async findAll(@Query() paginationQuery, @Protocol() protocol) {
+  async findAll(
+    @Query() paginationQuery: PaginationQueryDto,
+    @Protocol() protocol,
+  ) {
     // Timeout
     // await new Promise(resolve => setTimeout(resolve, 5000));
-    console.log(protocol);
-    const { limit, offset } = paginationQuery;
     // Using express (@Res() response)
     // response.status(200).send('This is all of coffees');
 
-    return this.coffeesService.findAll();
+    return this.coffeesService.findAll(paginationQuery);
   }
 
   @Get(':id')
