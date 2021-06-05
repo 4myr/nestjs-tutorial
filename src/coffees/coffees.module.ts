@@ -23,7 +23,7 @@ import { Flavor } from './entities/flavor.entity';
 // Custom provider
 // class MockCoffeesService {}
 @Module({
-  imports: [ConfigModule, TypeOrmModule.forFeature([Coffee, Flavor])],
+  imports: [ConfigModule, TypeOrmModule.forFeature([Coffee, Flavor, Event])],
   controllers: [CoffeesController],
   // providers: [{ provide: CoffeesService, useValue: new MockCoffeesService() }], // Custom Provider
   providers: [
