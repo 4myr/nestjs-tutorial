@@ -1,10 +1,15 @@
-import { NotFoundException } from '@nestjs/common';
+/* eslint-disable @typescript-eslint/no-empty-function */
+import { Inject, NotFoundException } from '@nestjs/common';
 import { Injectable } from '@nestjs/common';
+import { COFFEE_BRANDS } from './coffees.constants';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 import { Coffee } from './entities/coffee.entity';
 
 @Injectable()
 export class CoffeesService {
+  constructor(@Inject(COFFEE_BRANDS) coffeeBrands: string[]) {
+    console.log(coffeeBrands);
+  }
   private coffees: Coffee[] = [
     {
       id: 1,
@@ -45,7 +50,7 @@ export class CoffeesService {
   update(id: number, updateCoffeeDto: UpdateCoffeeDto) {
     const existingCoffee = this.findOne(id);
     if (existingCoffee) {
-      return `Updateing #${id} with ${updateCoffeeDto}`
+      return `Updateing #${id} with ${updateCoffeeDto}`;
     }
   }
 
